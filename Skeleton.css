@@ -1,0 +1,133 @@
+/* Full-screen background */
+body {
+    background-image: url("bakery.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Centered translucent card */
+.content-box {
+    background: rgba(255, 255, 255, 0.85);
+    max-width: 500px;
+    width: 90%;
+    margin: 60px auto;
+    padding: 25px 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+    backdrop-filter: blur(8px);
+    text-align: center;
+    animation: fadeIn 1s ease;
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px);}
+    to { opacity: 1; transform: translateY(0);}
+}
+
+/* Header styling */
+h1 {
+    color: #c43f61;
+    font-size: 32px;
+    text-shadow: 1px 1px 4px white;
+    margin-bottom: 15px;
+}
+
+h2 {
+    color: #2f3bb0;
+    margin: 15px 0;
+}
+
+/* Category radio buttons styling */
+.category-selection label {
+    display: inline-block;
+    margin: 6px 8px;
+    padding: 8px 12px;
+    border-radius: 12px;
+    background: #ffedf0;
+    cursor: pointer;
+    transition: 0.2s ease, transform 0.2s ease;
+}
+
+.category-selection input[type="radio"] {
+    margin-right: 6px;
+    transform: translateY(2px);
+}
+
+.category-selection label:hover {
+    background: #ffc8d2;
+    transform: scale(1.08);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* Category options styling */
+.category-options {
+    margin: 15px 0;
+    text-align: left;
+    display: none; /* hidden initially */
+    animation: fadeIn 0.5s ease forwards;
+}
+
+label input[type="radio"], label input[type="checkbox"] {
+    margin-right: 6px;
+    transform: translateY(1px);
+}
+
+.toppings-container {
+    margin-top: 8px;
+}
+
+/* Order button */
+.order-btn {
+    background: linear-gradient(90deg, #ffb347, #ffcc33);
+    border: none;
+    padding: 14px 28px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 16px;
+    cursor: pointer;
+    margin-top: 20px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+    transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+}
+
+.order-btn:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    background: linear-gradient(90deg, #ffcc33, #ffb347);
+    text-shadow: 0 1px 2px #fff;
+    animation: glow 1.2s infinite alternate;
+}
+
+/* Glow animation for button */
+@keyframes glow {
+    from { box-shadow: 0 0 10px #ffcc33, 0 0 20px #ffb347;}
+    to { box-shadow: 0 0 20px #ffcc33, 0 0 30px #ffb347;}
+}
+
+/* Cake/food image styling */
+.cake-image {
+    width: 80%;
+    max-width: 400px;
+    border-radius: 18px;
+    margin-top: 20px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.35);
+    animation: dropIn 0.7s ease;
+}
+
+/* Drop-in animation for image */
+@keyframes dropIn {
+    from { opacity: 0; transform: translateY(-40px) scale(0.8);}
+    to { opacity: 1; transform: translateY(0) scale(1);}
+}
+
+/* Responsive */
+@media (max-width: 420px) {
+    h1 { font-size: 24px; }
+    .content-box { padding: 20px; }
+    .cake-image { width: 90%; }
+}

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Little Bakery</title>
+  <link rel="stylesheet" href="Skeleton.css">
+</head>
+<body>
+
+  <main class="content-box" id="mainContent">
+      <header>
+          <h1>Still stressed and no dessert?</h1>
+      </header>
+
+      <h2>Order now</h2>
+
+      <p><strong>What do you want?</strong></p>
+      <div class="category-selection">
+          <label><input type="radio" name="category" value="starter" onclick="showOptions('starter')"> Starter</label>
+          <label><input type="radio" name="category" value="main" onclick="showOptions('main')"> Main Course</label>
+          <label><input type="radio" name="category" value="drinks" onclick="showOptions('drinks')"> Drinks</label>
+          <label><input type="radio" name="category" value="dessert" onclick="showOptions('dessert')"> Dessert</label>
+      </div>
+
+      <!-- Starter options -->
+      <div id="starter-options" class="category-options">
+          <p>Select your starter:</p>
+          <label><input type="radio" name="starterItem" value="soup"> Soup</label>
+          <label><input type="radio" name="starterItem" value="salad"> Salad</label>
+          <p>Add extras:</p>
+          <label><input type="checkbox" name="starterExtra" value="breadsticks"> Breadsticks</label>
+          <label><input type="checkbox" name="starterExtra" value="crackers"> Crackers</label>
+      </div>
+
+      <!-- Main course options -->
+      <div id="main-options" class="category-options">
+          <p>Select your main course:</p>
+          <label><input type="radio" name="mainItem" value="pasta"> Pasta</label>
+          <label><input type="radio" name="mainItem" value="pizza"> Pizza</label>
+          <p>Add extras:</p>
+          <label><input type="checkbox" name="mainExtra" value="cheese"> Extra Cheese</label>
+          <label><input type="checkbox" name="mainExtra" value="pepperoni"> Pepperoni</label>
+      </div>
+
+      <!-- Drinks options -->
+      <div id="drinks-options" class="category-options">
+          <p>Select your drinks:</p>
+          <label><input type="radio" name="drinkItem" value="coffee"> Coffee</label>
+          <label><input type="radio" name="drinkItem" value="tea"> Tea</label>
+          <p>Add extras:</p>
+          <label><input type="checkbox" name="drinkExtra" value="milk"> Milk</label>
+          <label><input type="checkbox" name="drinkExtra" value="sugar"> Sugar</label>
+      </div>
+
+      <!-- Dessert options -->
+      <div id="dessert-options" class="category-options">
+          <p>Select your dessert:</p>
+          <label><input type="radio" name="dessertItem" value="chocolate"> Chocolate Cake</label>
+          <label><input type="radio" name="dessertItem" value="vanilla"> Vanilla Cake</label>
+          <p>Add toppings:</p>
+          <label><input type="checkbox" name="dessertExtra" value="m&ms"> M&M's</label>
+          <label><input type="checkbox" name="dessertExtra" value="fabs"> Fabs</label>
+      </div>
+
+      <button class="order-btn" onclick="showOrder()">Order</button>
+  </main>
+
+  <script>
+      // Hide all category options initially
+      const options = document.querySelectorAll('.category-options');
+      options.forEach(opt => opt.style.display = 'none');
+
+      function showOptions(category) {
+          options.forEach(opt => opt.style.display = 'none'); // hide all
+          const selected = document.getElementById(category + '-options');
+          if(selected) selected.style.display = 'block'; // show selected
+      }
+
+      function showOrder() {
+          const main = document.getElementById('mainContent');
+          let selectedItem = '';
+          let allItems = document.querySelectorAll('input[type="radio"]:checked');
+          let extras = document.querySelectorAll('input[type="checkbox"]:checked');
+
+          if(allItems.length === 0 && extras.length === 0){
+              alert("Please select an item!");
+              return;
+          }
+
+          // Pick the main selection (first checked radio from any category)
+          allItems.forEach(item => {
+              selectedItem = item.value; 
+          });
+
+          // Extras text
+          let extrasText = extras.length > 0 ? " with " + Array.from(extras).map(e=>e.value).join(", ") : "";
+
+          // Show the correct image for the main selection
+          main.innerHTML = `
+              <h1>Yay! You ordered: ${selectedItem}${extrasText} 🎉</h1>
+              <img src="${selectedItem}.jpg" class="cake-image">
+          `;
+      }
+  </script>
+
+</body>
+</html>
